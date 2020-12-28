@@ -20,11 +20,24 @@ function retweet(searchText) {
             for(let tweet of tweets) {
                 tweetIDList.push(tweet.id_str);
 
-                //more code here later...
-            }
+            //avoid duplication of tweets
+                if(tweet.text.startWith("RT @")) {
+                    if(tweets.retweeted_status) {
+                        tweetIDList.push(tweets.retweeted_status.id_str);
+                    } else{
+                        tweetIDList.push(tweet.id_str);
+                    }
+                }
+            // Utility function - Gives unique elements from an array
+                function onlyUnique(value, index, self) { 
+                return self.indexOf(value) === index;
+                }
+            // Get only unique entries
+                tweetIDList = tweetIDList.filter( onlyUnique )
+                }
 
             // Call the 'statuses/retweet/:id' API endpoint for retweeting EACH of the tweetID
-            for (let tweetID of tweetIDList) {
+                for (let tweetID of tweetIDList) {
                 T.post('statuses/retweet/:id', {id : tweetID}, function(err_rt, data_rt, response_rt){
                     if(!err_rt){
                         console.log("\n\nRetweeted! ID - " + tweetID)
