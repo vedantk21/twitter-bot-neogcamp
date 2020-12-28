@@ -1,0 +1,17 @@
+{
+  "name": "tweet-bot",
+  "version": "1.0.0",
+  "description": "A showcase bot that retweets every tweet with #neogcamp hashtag",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "#neogcamp"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
+}
